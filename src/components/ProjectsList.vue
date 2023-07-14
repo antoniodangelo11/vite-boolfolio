@@ -21,6 +21,17 @@
                 this.currentPage = page;
                 this.getProjects();
             },
+            
+            nextPage() {
+                this.currentPage++;
+                this.getProjects();
+            },
+
+            previousPage() {
+                this.currentPage--;
+                this.getProjects();
+            },
+            
             getProjects() {
                 axios
                 .get('http://localhost:8000/api/projects', {
@@ -65,8 +76,8 @@
     <div class="container">
         <nav>
             <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
+                <li class="page-item">
+                    <a class="page-link" href="#" @click="previousPage()">Previous</a>
                 </li>
 
                 <li
@@ -75,13 +86,13 @@
                     class="page-item"
                     :class="{ active: page == currentPage }"
                 >
-                    <span class="page-link" @click="changePage(page)">
+                    <a class="page-link" href="#" @click="changePage(page)">
                         {{ page }}
-                    </span>
+                    </a>
                 </li>
 
                 <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    <a class="page-link" href="#" @click="nextPage()">Next</a>
                 </li>
             </ul>
         </nav>
