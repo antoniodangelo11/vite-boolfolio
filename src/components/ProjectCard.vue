@@ -1,32 +1,35 @@
 <script>
     export default {
         props: {
-            ObjCard: Object,
+            project: {
+                type: Object,
+                required: true,
+            }
         }
     };
 </script>
 
 <template>
-    <div 
-        v-for="card in this.ObjCard" 
-        :key="card.id" 
-        class="card h-100 card_pro"
-    >
-        <img :src="'http://localhost:8000/storage/' + card.image" class="card-img-top" :alt="id">
+    <div class="card h-100">
+        <img :src="'http://localhost:8000/storage/' + project.image" class="card-img-top w-100" :alt="id">
         <div class="card-body">
-            <h5 class="card-title">{{ card.title }}</h5>
-            <p class="card-text">{{ card.description }}</p>
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description }}</p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Author: {{ card.author }}</li>
-            <li class="list-group-item">Creation Date: {{ card.creation_date }}</li>
-            <li class="list-group-item">Last Update: {{ card.last_update }}</li>
-            <li class="list-group-item">Collaborators: {{ card.collaborators }}</li>
-            <li class="list-group-item">Technologies: {{ card.technologies[0].name }}</li>
-            <li class="list-group-item">Type: {{ card.type_id }}</li>
+            <li class="list-group-item">Author: {{ project.author }}</li>
+            <li class="list-group-item">Creation Date: {{ project.creation_date }}</li>
+            <li class="list-group-item">Last Update: {{ project.last_update }}</li>
+            <li class="list-group-item">Collaborators: {{ project.collaborators }}</li>
+            <li class="list-group-item">Technologies:
+                <span v-for="technology in project.technologies" :key="technology.name">
+                    {{ technology.name }},
+                </span>
+            </li>
+            <li class="list-group-item">Type: {{ project.type.name }}</li>
         </ul>
         <div class="card-body">
-            <a :href="card.link_github" class="card-link">Link Github</a>
+            <a :href="project.link_github" class="card-link">Link Github</a>
         </div>
     </div>
 </template>

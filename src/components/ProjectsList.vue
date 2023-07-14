@@ -12,6 +12,7 @@
                 arrProjects: [],
                 currentPage: 1,
                 nPages: 0,
+                activePage: 1,
             };
         },
         
@@ -22,7 +23,7 @@
             },
             getProjects() {
                 axios
-                .get('http://localhost:8000/api/project', {
+                .get('http://localhost:8000/api/projects', {
                     params: {
                         page: this.currentPage,
                     },
@@ -36,7 +37,7 @@
 
         created() {
             axios
-            .get('http://localhost:8000/api/project', {
+            .get('http://localhost:8000/api/projects', {
                 params: {
                     page: this.currentPage,
                 }
@@ -52,7 +53,12 @@
 <template>
     <main>
         <div class="container">
-            <ProjectCard :ObjCard="this.arrProjects" />
+            <h2 class="text-center">My Projects</h2>
+            <ProjectCard 
+                v-for="project in arrProjects" 
+                :key="project.id" 
+                :project="project"
+            />
         </div>
     </main>
 
