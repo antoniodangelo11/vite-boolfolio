@@ -5,7 +5,7 @@ export default {};
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <router-link :to="{ name: 'home' }" class="navbar-brand">My Projects</router-link>
+            <router-link :to="{ name: 'home' }" class="navbar-brand">Home</router-link>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
