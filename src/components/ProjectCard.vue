@@ -27,9 +27,9 @@
 <template>
     <div class="card h-100">
         <img 
-            :src="getImageUrl(objProjects.image)" 
+            :src="getImageUrl(objProject.image)" 
             class="card-img-top" 
-            :alt="objProjects.title"
+            :alt="objProject.title"
         >
         <div class="card-body">
             <h5 class="card-title">{{ objProject.title }}</h5>
@@ -48,10 +48,10 @@
             <li class="list-group-item">Type: {{ objProject.type.name }}</li>
         </ul>
         <div class="card-body">
-            <a :href="objProject.link_github" class="card-link">Link Github</a>
+            <a :href="objProject.link_github" class="card-link mx-1 btn btn-warning">Link Github</a>
             <router-link
-                :to="{ name: 'projects.show', params: { slug: objProjects.slug } }"
-                class="btn btn-primary mt-auto"
+                :to="{ name: 'projects.show', params: { slug: objProject.slug } }"
+                class="btn btn-primary"
             >View</router-link>
         </div>
     </div>

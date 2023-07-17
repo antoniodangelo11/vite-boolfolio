@@ -1,6 +1,6 @@
 <script>
   import AppNav from './components/AppNav.vue';
-  import AppFooter from './components/AppFooter.vue';
+  import AppFooter from './components/Appfooter.vue';
   
   export default {
     components: {
@@ -13,7 +13,6 @@
 <template>
   <AppNav />
   <div class="container">
-    <h1 class="text-center">My Projects</h1>
     <router-view></router-view>
   </div>
   <AppFooter />

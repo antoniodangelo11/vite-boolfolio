@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-    <h2>I'm Show</h2>
+    <h2>SHOW</h2>
 </template>
 
-<style></style>
+<style lang="scss" scoped></style>
