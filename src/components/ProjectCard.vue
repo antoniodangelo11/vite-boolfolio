@@ -18,7 +18,7 @@
         methods: {
             getImageUrl(image) {
                 return image
-
+                    ? this.store.baseUrl + 'storage/' + image : this.store.baseUrl + 'storage/default.jpg';
             },
         },
     };
@@ -26,7 +26,11 @@
 
 <template>
     <div class="card h-100">
-        <img :src="'http://localhost:8000/storage/' + objProject.image" class="card-img-top" alt="">
+        <img 
+            :src="getImageUrl(objProjects.image)" 
+            class="card-img-top" 
+            :alt="objProjects.title"
+        >
         <div class="card-body">
             <h5 class="card-title">{{ objProject.title }}</h5>
             <p class="card-text">{{ objProject.description }}</p>
@@ -45,6 +49,10 @@
         </ul>
         <div class="card-body">
             <a :href="objProject.link_github" class="card-link">Link Github</a>
+            <router-link
+                :to="{ name: 'projects.show', params: { slug: objProjects.slug } }"
+                class="btn btn-primary mt-auto"
+            >View</router-link>
         </div>
     </div>
 </template>

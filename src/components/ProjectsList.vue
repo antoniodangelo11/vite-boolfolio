@@ -42,16 +42,7 @@
         },      
 
         created() {
-            axios
-            .get(this.store.baseUrl + 'api/projects', {
-                params: {
-                    page: this.currentPage,
-                }
-            })
-            .then(response=>{
-                this.arrProjects = response.data.data;
-                this.nPages = response.data.last_page;
-            });
+            this.getProjects();
         },
 
         watch: {
@@ -64,7 +55,6 @@
 
 <template>
     <main>
-        <h1 class="text-center">My Projects</h1>
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
                 <div class="col" v-for="project in arrProjects" :key="project.id">
