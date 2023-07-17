@@ -1,7 +1,8 @@
 <script>
     import axios from 'axios';
     import ProjectCard from './ProjectCard.vue';
-    
+    import { store } from '../store';
+
     export default {
         components: {
             ProjectCard,
@@ -13,28 +14,22 @@
                 currentPage: 1,
                 nPages: 0,
                 activePage: 1,
+                store,
             };
         },
         
         methods: {
-            changePage(page) {
-                this.currentPage = page;
-                this.getProjects();
-            },
-            
-            nextPage() {
-                this.currentPage++;
-                this.getProjects();
+            toPrevPage() {
+                this.currentPage != 1 ? this.currentPage-- : null;
             },
 
-            previousPage() {
-                this.currentPage--;
-                this.getProjects();
+            toNextPage() {
+                this.currentPage != this.nPages ? this.currentPage++ : null;
             },
-            
+
             getProjects() {
                 axios
-                .get('http://localhost:8000/api/projects', {
+                .get(this.store.baseUrl + 'api/projects', {
                     params: {
                         page: this.currentPage,
                     },
@@ -48,7 +43,7 @@
 
         created() {
             axios
-            .get('http://localhost:8000/api/projects', {
+            .get(this.store.baseUrl + 'api/projects', {
                 params: {
                     page: this.currentPage,
                 }
@@ -58,26 +53,32 @@
                 this.nPages = response.data.last_page;
             });
         },
+
+        watch: {
+            currentPage() {
+                this.getProjects();
+            }
+        }
     };
 </script>
 
 <template>
     <main>
+        <h1 class="text-center">My Projects</h1>
         <div class="container">
-            <h2 class="text-center">My Projects</h2>
-            <ProjectCard 
-                v-for="project in arrProjects" 
-                :key="project.id" 
-                :project="project"
-            />
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                <div class="col" v-for="project in arrProjects" :key="project.id">
+                    <ProjectCard :objProject="project"/>
+                </div>
+            </div>
         </div>
     </main>
-
-    <div class="container">
+    
+    <div class="container mt-2">
         <nav>
             <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" @click="previousPage()">Previous</a>
+                <li class="page-item" :class="{ disabled: currentPage == 1 }">
+                    <a class="page-link" @click="toPrevPage">Previous</a>
                 </li>
 
                 <li
@@ -86,19 +87,17 @@
                     class="page-item"
                     :class="{ active: page == currentPage }"
                 >
-                    <a class="page-link" href="#" @click="changePage(page)">
+                    <a class="page-link" href="#" @click="currentPage = page">
                         {{ page }}
                     </a>
                 </li>
 
-                <li class="page-item">
-                    <a class="page-link" href="#" @click="nextPage()">Next</a>
+                <li class="page-item" :class="{ disabled: currentPage == nPages }">
+                    <a class="page-link" href="#" @click="toNextPage()">Next</a>
                 </li>
             </ul>
         </nav>
     </div>
 </template>
 
-<style lang="scss" scoped>
-    
-</style>
+<style lang="scss" scoped></style>
