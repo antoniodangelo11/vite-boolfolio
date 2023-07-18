@@ -32,6 +32,7 @@
                 .get(this.store.baseUrl + 'api/projects', {
                     params: {
                         page: this.currentPage,
+                        q: new URLSearchParams(window.location.search).get('q'),
                     },
                 })
                 .then(response => {

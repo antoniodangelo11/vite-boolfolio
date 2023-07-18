@@ -35,7 +35,7 @@
         <img
             :src="getImageUrl(objProject.image)"
             :alt="objProject.title"
-            class="card-img-top h-100" 
+            class="card-img-top" 
         >
         <div class="card-body">
             <h5 class="card-title">{{ objProject.title }}</h5>
@@ -63,4 +63,10 @@
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+    height: 150px;
+    object-fit: cover;
+    object-fit: contain;
+}
+</style>

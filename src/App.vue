@@ -1,7 +1,7 @@
 <script>
   import axios from 'axios';
   import AppNav from './components/AppNav.vue';
-  import AppFooter from './components/Appfooter.vue';
+  import AppFooter from './components/AppFooter.vue';
   
   export default {
     components: {
