@@ -20,16 +20,22 @@
                 return image
                     ? this.store.baseUrl + 'storage/' + image : this.store.baseUrl + 'storage/default.jpg';
             },
+
+            formatDate(date) {
+                const parts = date.split("-");
+                const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                return formattedDate;
+            },
         },
     };
 </script>
 
 <template>
     <div class="card h-100">
-        <img 
-            :src="getImageUrl(objProject.image)" 
-            class="card-img-top" 
+        <img
+            :src="getImageUrl(objProject.image)"
             :alt="objProject.title"
+            class="card-img-top h-100" 
         >
         <div class="card-body">
             <h5 class="card-title">{{ objProject.title }}</h5>
@@ -37,8 +43,8 @@
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Author: {{ objProject.author }}</li>
-            <li class="list-group-item">Creation Date: {{ objProject.creation_date }}</li>
-            <li class="list-group-item">Last Update: {{ objProject.last_update }}</li>
+            <li class="list-group-item">Creation Date: {{ formatDate(objProject.creation_date) }}</li>
+            <li class="list-group-item">Last Update: {{ formatDate(objProject.last_update) }}</li>
             <li class="list-group-item">Collaborators: {{ objProject.collaborators }}</li>
             <li class="list-group-item">Technologies:
                 <span v-for="technology in objProject.technologies" :key="technology.name">

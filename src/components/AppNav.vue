@@ -18,7 +18,7 @@ export default {};
                         <router-link :to="{ name: 'projects.index' }" class="nav-link active">Projects List</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">About</a>
+                        <router-link :to="{ name: 'about' }" class="nav-link active">About</router-link>
                     </li>
                 </ul>
                 <!-- <form class="d-flex" role="search">

@@ -37,7 +37,9 @@ export default {
     <template v-else-if="singleProject">
         <h2>{{ singleProject.title }}</h2>
         <h3>Last update: {{ this.DateTime.now().toFormat("dd-MM-yyyy") }}</h3>
-        <img :src="this.store.baseUrl + 'storage/' + singleProject.image" :alt="singleProject.title" />
+        <div class="card h-100">
+            <img class="card-img-top h-100" :src="this.store.baseUrl + 'storage/' + singleProject.image" :alt="singleProject.title" />
+        </div>
     </template>
 </template>
 
