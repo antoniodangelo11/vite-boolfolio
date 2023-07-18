@@ -35,8 +35,8 @@
                     },
                 })
                 .then(response => {
-                    this.arrProjects = response.data.data;
-                    this.nPages = response.data.last_page;
+                    this.arrProjects = response.data.results.data;
+                    this.nPages = response.data.results.last_page;
                 });
             }
         },      
@@ -68,7 +68,7 @@
         <nav>
             <ul class="pagination">
                 <li class="page-item" :class="{ disabled: currentPage == 1 }">
-                    <a class="page-link" @click="toPrevPage">Previous</a>
+                    <a class="page-link" href="#" @click="toPrevPage">Previous</a>
                 </li>
 
                 <li
