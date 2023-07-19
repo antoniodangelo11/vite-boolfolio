@@ -38,7 +38,11 @@ export default {
         <h2>{{ singleProject.title }}</h2>
         <h3>Last update: {{ this.DateTime.now().toFormat("dd-MM-yyyy") }}</h3>
         <div class="card h-100">
-            <img class="card-img-top h-100" :src="this.store.baseUrl + 'storage/' + singleProject.image" :alt="singleProject.id" />
+            <img 
+                class="card-img-top h-100" 
+                :src="this.store.baseUrl + 'storage/' + singleProject.image" 
+                :alt="singleProject.id" 
+            />
         </div>
     </template>
 </template>

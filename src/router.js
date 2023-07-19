@@ -6,6 +6,7 @@ import AppAbout from './pages/AppAbout.vue';
 import ProjectsIndex from './pages/ProjectsIndex.vue';
 import ProjectsShow from './pages/ProjectsShow.vue';
 import App404 from './pages/App404.vue';
+import AppContact from './pages/AppContact.vue'
 
 
 const router = createRouter({
@@ -20,6 +21,11 @@ const router = createRouter({
       path: "/about",
       name: "about",
       component: AppAbout,
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: AppContact,
     },
     {
       path: "/projects",

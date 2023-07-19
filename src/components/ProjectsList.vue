@@ -28,6 +28,7 @@
             },
 
             getProjects() {
+                this.loader = true;
                 axios
                 .get(this.store.baseUrl + 'api/projects', {
                     params: {
@@ -38,6 +39,7 @@
                 .then(response => {
                     this.arrProjects = response.data.results.data;
                     this.nPages = response.data.results.last_page;
+                    this.loader = false;
                 });
             }
         },      
@@ -57,10 +59,13 @@
 <template>
     <main>
         <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            <div v-if="!loader" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 my-5">
                 <div class="col" v-for="project in arrProjects" :key="project.id">
                     <ProjectCard :objProject="project"/>
                 </div>
+            </div>
+            <div v-else>
+                <h2>PLEASE WAIT!</h2>
             </div>
         </div>
     </main>
