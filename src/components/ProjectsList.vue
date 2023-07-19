@@ -10,11 +10,13 @@
         
         data() {
             return {
+                arrTypes: [],
                 arrProjects: [],
                 currentPage: 1,
                 nPages: 0,
                 activePage: 1,
                 store,
+                loader: true,
             };
         },
         
